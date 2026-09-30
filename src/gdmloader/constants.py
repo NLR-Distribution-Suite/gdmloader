@@ -1,17 +1,7 @@
+"""Pre-built sources. Importing this module performs no network I/O."""
 
-from gdmloader.source import SourceModel
-import fsspec
+from gdmloader.source import get_gcs_source, get_github_source
 
-GDM_CASE_SOURCE = SourceModel(
-    fs=fsspec.filesystem("github", org="NREL-Distribution-Suites", repo="gdm-cases", branch="main"),
-    name="gdm-cases",
-    url="https://github.com/NREL-Distribution-Suites/gdm-cases",
-    folder="data",
-)
+GDM_CASE_SOURCE = get_github_source()
 
-GCS_CASE_SOURCE = SourceModel(
-    fs=fsspec.filesystem("gcs"),
-    name="gdm_data",
-    url="https://storage.googleapis.com/gdm_data",
-    folder="data",
-)
+GCS_CASE_SOURCE = get_gcs_source()
